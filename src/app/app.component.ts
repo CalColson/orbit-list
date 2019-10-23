@@ -9,9 +9,11 @@ import { Satellite } from './satellite'
 export class AppComponent {
   title = 'orbit-report'
   sourceList: Satellite[]
+  displayList: Satellite[]
 
   constructor() {
     this.sourceList = []
+    this.displayList = this.sourceList
     const satellitesUrl = 'https://handlers.education.launchcode.org/static/satellites.json'
 
     window.fetch(satellitesUrl).then(function(response: Response) {
@@ -29,5 +31,17 @@ export class AppComponent {
         // console.log(this.sourceList)
       }.bind(this))
     }.bind(this))
+  }
+
+  search(): void {
+    const matchingSatellites: Satellite[] = []
+    const searchTerm = document.querySelector('input').value.toLowerCase()
+    for (const satellite of this.sourceList) {
+      const name = satellite.name.toLowerCase()
+      if (name.indexOf(searchTerm) >= 0) {
+        matchingSatellites.push(satellite)
+      }
+    }
+    this.displayList = matchingSatellites
   }
 }
