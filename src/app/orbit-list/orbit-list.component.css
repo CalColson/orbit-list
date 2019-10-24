@@ -3,6 +3,10 @@
     color: #dd5;
 }
 
+.striped-row {
+  background-color: lightgreen;
+}
+
 .warning {
     background-color: #da8a8a;
 }

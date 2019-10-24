@@ -8,7 +8,7 @@
     <th>Launch Date</th>
   </tr>
   <!-- TODO: put <tr *ngFor=""></tr> here -->
-  <tr *ngFor="let satellite of satellites">
+  <tr *ngFor="let satellite of satellites; index as i" [class.striped-row]="i % 2 === 0">
     <td>{{satellite.name}}</td>
     <td [class.warning]="satellite.shouldShowWarning()">{{satellite.type}}</td>
     <td>{{satellite.operational}}</td>
