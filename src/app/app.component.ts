@@ -54,20 +54,21 @@ export class AppComponent {
     }.bind(this))
   }
 
-  search(): void {
+  search(searchTerm: string): void {
     const matchingSatellites: Satellite[] = []
-    const searchTerm = document.querySelector('input').value.toLowerCase()
+    const searchTermClean = searchTerm.toLowerCase()
+    // console.log(searchTermClean)
     for (const satellite of this.sourceList) {
       const name = satellite.name.toLowerCase()
-      if (name.indexOf(searchTerm) >= 0) {
+      if (name.indexOf(searchTermClean) >= 0) {
         matchingSatellites.push(satellite)
       }
       const orbitType = satellite.orbitType.toLowerCase()
-      if (orbitType.indexOf(searchTerm) >= 0 && !matchingSatellites.includes(satellite)) {
+      if (orbitType.indexOf(searchTermClean) >= 0 && !matchingSatellites.includes(satellite)) {
         matchingSatellites.push(satellite)
       }
       const type = satellite.type.toLowerCase()
-      if (type.indexOf(searchTerm) >= 0 && !matchingSatellites.includes(satellite)) {
+      if (type.indexOf(searchTermClean) >= 0 && !matchingSatellites.includes(satellite)) {
         matchingSatellites.push(satellite)
       }
     }
